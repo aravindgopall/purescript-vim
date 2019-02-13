@@ -91,7 +91,9 @@ function! GetPurescriptIndent()
       endif
     endwhile
     if s > 0
-        return 10 + g:purescript_indent_in
+        return s + g:purescript_indent_in
+    else 
+        return &l:shiftwidth + g:purescript_indent_in
     endif
   endif
 
