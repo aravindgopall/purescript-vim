@@ -90,9 +90,7 @@ function! GetPurescriptIndent()
 	let s = -1
       endif
     endwhile
-    if s <= 0 
-        return v:lnum
-    else 
+    if s > 0
         return s + g:purescript_indent_in
     endif
   endif
