@@ -79,7 +79,7 @@ function! GetPurescriptIndent()
     return max([s, &l:shiftwidth])
   endif
 
-  if line =~ '^\s*\<in\>'
+  if line =~ '^\s*\<in \>'
     let n = v:lnum
     let s = 0
 
