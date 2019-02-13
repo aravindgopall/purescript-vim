@@ -91,7 +91,7 @@ function! GetPurescriptIndent()
       endif
     endwhile
     if s > 0
-        return s + g:purescript_indent_in
+        return 10 + g:purescript_indent_in
     endif
   endif
 
