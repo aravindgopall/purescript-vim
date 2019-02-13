@@ -63,7 +63,7 @@ if !exists('g:purescript_indent_dot')
 endif
 
 setlocal indentexpr=GetPurescriptIndent()
-setlocal indentkeys=!^F,o,O,},=where,=in,=::,=->,=→,==>,=⇒
+setlocal indentkeys=!^F,o,O,},=where,=::,=->,=→,==>,=⇒
 
 function! s:GetSynStack(lnum, col)
   return map(synstack(a:lnum, a:col), { key, val -> synIDattr(val, "name") })
@@ -76,10 +76,11 @@ function! GetPurescriptIndent()
 
   if line =~ '^\s*\<where\>'
     let s = indent(v:lnum - 1)
-    return max([s, &l:shiftwidth])
+    return 15
+    " return max([s, &l:shiftwidth])
   endif
 
-  if line =~ '^\s*\<in\>'
+  if line =~ '^\s*\<in\s\>'
     let n = v:lnum
     let s = 0
 
@@ -90,11 +91,8 @@ function! GetPurescriptIndent()
 	let s = -1
       endif
     endwhile
-    if s > 0
-        return s + g:purescript_indent_in
-    else 
-        return &l:shiftwidth + g:purescript_indent_in
-    endif
+    return 15
+    " return s + g:purescript_indent_in
   endif
 
   let s = match(prevline, '^\s*\zs\(--\|import\)')
